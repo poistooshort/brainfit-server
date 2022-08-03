@@ -2,3 +2,6 @@
 
 # VIM temp files
 *.swp
+
+# Temp Folder
+/temp
