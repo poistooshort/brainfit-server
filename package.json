@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "scripts": {},
+  "scripts": {
+	  "start": "node server",
+      "dev": "nodemon server",
+	  "migrate": "knex migrate:latest"
+  },
   "author": "Po Lin",
   "license": "ISC",
   "dependencies": {
