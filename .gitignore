@@ -3,9 +3,5 @@
 # VIM temp files
 *.swp
 
-<<<<<<< HEAD
-# personal temp folder
-=======
 # Temp Folder
->>>>>>> ft/github-sso
 /temp
