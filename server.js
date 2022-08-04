@@ -15,6 +15,8 @@ require('dotenv').config();
 app.use(express.json());
 app.use(helmet());
 
+app.use(express.static('public'));
+
 app.use(
 	cors({
 		origin: true,
