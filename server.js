@@ -1,5 +1,6 @@
 const express = require('express');
 const expressSession = require('express-session');
+const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const helmet = require('helmet');
 const passport = require('passport');
@@ -9,6 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 5050;
 
 const authRoutes = require('./routes/auth');
+const exercisesRoutes = require('./routes/exercises');
 
 require('dotenv').config();
 
@@ -23,6 +25,8 @@ app.use(
 		credentials: true
 	})
 );
+
+app.use(fileUpload());
 
 app.use(
 	expressSession({
@@ -87,6 +91,8 @@ passport.deserializeUser((userId, done) => {
 });
 
 app.use('/auth', authRoutes);
+
+app.use('/exercises', exercisesRoutes);
 
 app.listen(PORT, () => {
 	console.log(`Server is listening on port ${PORT}. 🚀`);
