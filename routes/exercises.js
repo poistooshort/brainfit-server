@@ -6,6 +6,7 @@ router.post('/', (req, res) => {
 		return res.status(500).send("File was not found in request");
 	}
 
+	const { title, description } = req;
 	const file = req.files.file;
 
 	file.mv(`${__dirname}/../public/images/test.gif`, function (err) {
