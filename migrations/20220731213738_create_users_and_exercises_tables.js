@@ -12,6 +12,7 @@ exports.up = function(knex) {
 			table.integer('creator_id').unsigned().notNullable();
 			table.string('title', 50).notNullable();
 			table.string('equipment', 50).notNullable();
+			table.string('filename').notNullable();
 			table.string('description', 255);
 			table.timestamp('updated_at').defaultTo(knex.fn.now());
 			table
