@@ -20,7 +20,7 @@ exports.up = function(knex) {
 				.inTable('users')
 				.onUpdate('CASCADE')
 				.onDelete('CASCADE');
-		});
+		})
 		.createTable('comments', (table) => {
 			table.increments('id').primary();
 			table.integer('exercise_id').unsigned().notNullable();

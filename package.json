@@ -7,7 +7,7 @@
     "start": "node server",
     "dev": "nodemon server",
     "migrate": "knex migrate:latest",
-	"migrate:down": "knex migrate:down"
+    "migrate:down": "knex migrate:down"
   },
   "author": "Po Lin",
   "license": "ISC",
@@ -22,7 +22,8 @@
     "knex": "^2.2.0",
     "mysql": "^2.18.1",
     "passport": "^0.6.0",
-    "passport-github2": "^0.1.12"
+    "passport-github2": "^0.1.12",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
