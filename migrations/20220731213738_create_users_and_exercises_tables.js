@@ -11,7 +11,8 @@ exports.up = function(knex) {
 			table.increments('id').primary();
 			table.integer('creator_id').unsigned().notNullable();
 			table.string('title', 50).notNullable();
-			table.text('description');
+			table.string('equipment', 50).notNullable();
+			table.string('description', 255);
 			table.timestamp('updated_at').defaultTo(knex.fn.now());
 			table
 				.foreign('creator_id')
@@ -20,8 +21,20 @@ exports.up = function(knex) {
 				.onUpdate('CASCADE')
 				.onDelete('CASCADE');
 		});
+		.createTable('comments', (table) => {
+			table.increments('id').primary();
+			table.integer('exercise_id').unsigned().notNullable();
+			table.string('comment', 255).notNullable();
+			table.string('name').notNullable();
+			table
+				.foreign('exercise_id')
+				.references('id')
+				.inTable('exercises')
+				.onUpdate('CASCADE')
+				.onDelete('CASCADE');
+		});
 };
 
 exports.down = function(knex) {
-	return knex.schema.dropTable('exercises').dropTable('users');  
+	return knex.schema.dropTable('comments').dropTable('exercises').dropTable('users');
 };

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server",
     "dev": "nodemon server",
-    "migrate": "knex migrate:latest"
+    "migrate": "knex migrate:latest",
+	"migrate:down": "knex migrate:down"
   },
   "author": "Po Lin",
   "license": "ISC",
