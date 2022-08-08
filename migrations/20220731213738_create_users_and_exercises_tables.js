@@ -27,7 +27,8 @@ exports.up = function(knex) {
 			table.increments('id').primary();
 			table.integer('exerciseId').unsigned().notNullable();
 			table.string('comment', 255).notNullable();
-			table.string('name').notNullable();
+			table.string('username').notNullable();
+			table.timestamp('created').defaultTo(knex.fn.now());
 			table
 				.foreign('exerciseId')
 				.references('id')
