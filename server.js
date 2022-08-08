@@ -11,13 +11,11 @@ const PORT = process.env.PORT || 5050;
 
 const authRoutes = require('./routes/auth');
 const exercisesRoutes = require('./routes/exercises');
+const commentsRoutes = require('./routes/comments');
 
 require('dotenv').config();
 
-app.use(express.json());
 app.use(helmet());
-
-app.use(express.static('public'));
 
 app.use(
 	cors({
@@ -26,7 +24,10 @@ app.use(
 	})
 );
 
+app.use(express.static('public'));
+
 app.use(fileUpload());
+app.use(express.json());
 
 app.use(
 	expressSession({
@@ -93,6 +94,8 @@ passport.deserializeUser((userId, done) => {
 app.use('/auth', authRoutes);
 
 app.use('/exercises', exercisesRoutes);
+
+app.use('/comments', commentsRoutes);
 
 app.listen(PORT, () => {
 	console.log(`Server is listening on port ${PORT}. 🚀`);

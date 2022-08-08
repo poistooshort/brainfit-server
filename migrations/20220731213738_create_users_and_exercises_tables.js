@@ -5,18 +5,19 @@ exports.up = function(knex) {
 			table.integer('github_id');
 			table.string('avatar_url');
 			table.string('username').notNullable();
-			table.timestamp('updated_at').defaultTo(knex.fn.now());
+			table.timestamp('created').defaultTo(knex.fn.now());
 		})
 		.createTable('exercises', (table) => {
 			table.increments('id').primary();
-			table.integer('creator_id').unsigned().notNullable();
+			table.integer('creatorId').unsigned().notNullable();
 			table.string('title', 50).notNullable();
 			table.string('equipment', 50).notNullable();
 			table.string('filename').notNullable();
 			table.string('description', 255);
-			table.timestamp('updated_at').defaultTo(knex.fn.now());
+			table.integer('likes').unsigned().notNullable();
+			table.timestamp('created').defaultTo(knex.fn.now());
 			table
-				.foreign('creator_id')
+				.foreign('creatorId')
 				.references('id')
 				.inTable('users')
 				.onUpdate('CASCADE')
@@ -24,11 +25,11 @@ exports.up = function(knex) {
 		})
 		.createTable('comments', (table) => {
 			table.increments('id').primary();
-			table.integer('exercise_id').unsigned().notNullable();
+			table.integer('exerciseId').unsigned().notNullable();
 			table.string('comment', 255).notNullable();
 			table.string('name').notNullable();
 			table
-				.foreign('exercise_id')
+				.foreign('exerciseId')
 				.references('id')
 				.inTable('exercises')
 				.onUpdate('CASCADE')

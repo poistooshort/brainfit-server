@@ -14,11 +14,10 @@ exports.addImage = (req, res) => {
 
 	const filename = `${uuid.v4()}.gif`;
 
-	file.mv(`${__dirname}/../public/images/${filename}`, function(err) {
+	file.mv(`${__dirname}/../public/gifs/${filename}`, function(err) {
 		if(err) {
 			return res.status(500).send('Error occured while trying to put image file into public images folder');
 		}
-		console.log('Image successfully uploaded to public images folder');
 	});
 
 	const filenameData = { filename: filename };
@@ -28,6 +27,41 @@ exports.addImage = (req, res) => {
 
 exports.addExercise = (req, res) => {
 	// fields: creator_id, title, equipment, description, filename
-		
-	return res.status(200).send('Exercise successfully crated');
+
+	const newExercise = req.body;
+
+	knex('exercises')
+		.insert(newExercise)
+		.then(data =>  {
+			res.status(201).send(`New exercise was created with id : ${data[0]}`);
+		})
+		.catch(err => {
+			res.status(400).send(`Error creating new exercise with code : ${err}`);
+		});
+};
+
+exports.getExercises = (req, res) => {
+	knex('exercises')
+		.then(data => {
+			res.status(200).json(data);
+		})
+		.catch(err => {
+			res.status(400).send(`Error retrieving list of exercises with error : ${err}`);
+		});
+};
+
+exports.getExercise = (req, res) => {
+	const { id } = req.params;
+
+	knex('exercises')
+		.where({ id: id })
+		.then(data => {
+			if(!data.length) {
+				return res.status(404).send(`Exercise with id: ${id} was not found`);
+			}
+			res.status(200).json(data[0]);	
+		})
+		.catch(err =>  {
+			res.status(400).send(`Error retrieving exercise with id: ${id}`);
+		});
 };
