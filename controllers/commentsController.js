@@ -7,7 +7,7 @@ exports.getComments = (req, res) => {
 		.where({ exerciseId: exerciseId })
 		.then(data => {
 			if(!data.length){
-				res.status(204).json(data);
+				res.status(204);
 			}
 			res.status(200).json(data);
 		})
