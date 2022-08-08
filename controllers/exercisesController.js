@@ -65,3 +65,17 @@ exports.getExercise = (req, res) => {
 			res.status(400).send(`Error retrieving exercise with id: ${id}`);
 		});
 };
+
+exports.updateLikes = (req, res) => {
+	const { exerciseId } = req.params;
+	
+	knex('exercises')
+		.where({ id: exerciseId })
+		.update(req.body)
+		.then(() => {
+			res.status(200).send(`Likes for exercise (id: ${exerciseId}) have been updated.`);
+		})
+		.catch(err => {
+			res.status(400).send(`Error trying to update likes with error: ${err}`);
+		});
+};
