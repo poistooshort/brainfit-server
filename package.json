@@ -7,7 +7,8 @@
     "start": "node server",
     "dev": "nodemon server",
     "migrate": "knex migrate:latest",
-    "migrate:down": "knex migrate:down"
+    "migrate:down": "knex migrate:down",
+	"seed": "knex seed:run"
   },
   "author": "Po Lin",
   "license": "ISC",
