@@ -14,4 +14,6 @@ router.route('/images').post(exercisesController.addImage);
 
 router.route('/likes/:exerciseId').put(exercisesController.updateLikes);
 
+router.route('/user/:userId').get(exercisesController.getUserExercises);
+
 module.exports = router;

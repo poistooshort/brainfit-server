@@ -42,6 +42,7 @@ exports.addExercise = (req, res) => {
 
 exports.getExercises = (req, res) => {
 	knex('exercises')
+		.orderBy('likes', 'desc')
 		.then(data => {
 			res.status(200).json(data);
 		})
@@ -92,4 +93,17 @@ exports.deleteExercise = (req, res) => {
 		.catch(err => {
 			res.status(400).send(`Error trying to delete exercise with id ${id}`);
 		});
-}
+};
+
+exports.getUserExercises = (req, res) => {
+	const { userId } = req.params;
+
+	knex('exercises')
+		.where({ creatorId: userId })
+		.then(data => {
+			res.status(200).json(data);
+		})
+		.catch(err => {
+			res.status(400).send(`Error trying get exercises created by user with id: ${userId}`);
+		});
+};
