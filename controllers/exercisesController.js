@@ -79,3 +79,17 @@ exports.updateLikes = (req, res) => {
 			res.status(400).send(`Error trying to update likes with error: ${err}`);
 		});
 };
+
+exports.deleteExercise = (req, res) => {
+	const { id } = req.params;
+
+	knex('exercises')
+		.delete()
+		.where({ id: id })
+		.then(() => {
+			res.status(204).send(`Successfully deleted exercise with id ${id}`);
+		})
+		.catch(err => {
+			res.status(400).send(`Error trying to delete exercise with id ${id}`);
+		});
+}

@@ -6,7 +6,9 @@ router.route('/')
 	.get(exercisesController.getExercises)
 	.post(exercisesController.addExercise);
 
-router.route('/:id').get(exercisesController.getExercise);
+router.route('/:id')
+	.get(exercisesController.getExercise)
+	.delete(exercisesController.deleteExercise);
 
 router.route('/images').post(exercisesController.addImage);
 
