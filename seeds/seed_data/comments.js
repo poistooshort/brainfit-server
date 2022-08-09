@@ -14,7 +14,7 @@ module.exports=[
 	{
 		id: 3,
 		exerciseId: 1, 
-		comment: "I don't know what you all are talking about. These are the best!"
+		comment: "I don't know what you all are talking about. These are the best!",
 		username: 'Danny Williams' 
 	},
 	{
