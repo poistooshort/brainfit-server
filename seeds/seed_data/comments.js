@@ -50,7 +50,7 @@ module.exports=[
 	{
 		id: 9,
 		exerciseId: 3,
-		comment: "💪",
+		comment: "Right on!",
 		username: 'Danny Williams'
 	}
 ]
