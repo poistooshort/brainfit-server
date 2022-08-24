@@ -13,7 +13,7 @@ router.get('/github/callback',
 			failureRedirect: `${process.env.CLIENT_URL}/auth-fail`,
 		}),
 		(_req, res) => {
-			res.redirect(`${process.env.CLIENT_URL}/exercises`);
+			res.redirect(`${process.env.CLIENT_URL}/profile`);
 		}
 );
 
