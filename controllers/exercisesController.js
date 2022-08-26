@@ -1,5 +1,8 @@
 const knex = require('knex')(require('../knexfile').development);
 const uuid = require('uuid');
+const fs = require('fs');
+
+const SERVER_URL = process.env.SERVER_URL; 
 
 exports.addImage = (req, res) => {
 	if(!req.files){
@@ -85,8 +88,20 @@ exports.deleteExercise = (req, res) => {
 	const { id } = req.params;
 
 	knex('exercises')
-		.delete()
+		.select('filename')
 		.where({ id: id })
+		.then((data) => {
+			if(data){
+				const filename = data[0].filename;
+				fs.unlinkSync(`${__dirname}/../public/gifs/${filename}`);
+				return(
+					knex('exercises')
+						.delete()
+						.where({ id: id })
+				);
+			}
+			res.status(400).send(`Error getting filename from exercise with id: ${id}`);
+		})
 		.then(() => {
 			res.status(204).send(`Successfully deleted exercise with id ${id}`);
 		})
