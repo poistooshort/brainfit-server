@@ -2,8 +2,6 @@ const knex = require('knex')(require('../knexfile').development);
 const uuid = require('uuid');
 const fs = require('fs');
 
-const SERVER_URL = process.env.SERVER_URL; 
-
 exports.addImage = (req, res) => {
 	if(!req.files){
 		return res.status(500).send("File was not found in request");

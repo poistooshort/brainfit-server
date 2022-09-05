@@ -3,6 +3,7 @@ exports.up = function(knex) {
 		.createTable('users', (table) => {
 			table.increments('id').primary();
 			table.integer('github_id');
+			table.string('password');
 			table.string('avatar_url');
 			table.string('username').notNullable();
 			table.timestamp('created').defaultTo(knex.fn.now());

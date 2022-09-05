@@ -10,8 +10,9 @@ const app = express();
 const PORT = process.env.PORT || 5050;
 
 const authRoutes = require('./routes/auth');
-const exercisesRoutes = require('./routes/exercises');
 const commentsRoutes = require('./routes/comments');
+const exercisesRoutes = require('./routes/exercises');
+const signupRoutes = require('./routes/signup');
 
 require('dotenv').config();
 
@@ -93,9 +94,11 @@ passport.deserializeUser((userId, done) => {
 
 app.use('/auth', authRoutes);
 
+app.use('/comments', commentsRoutes);
+
 app.use('/exercises', exercisesRoutes);
 
-app.use('/comments', commentsRoutes);
+app.use('/signup', signupRoutes);
 
 app.listen(PORT, () => {
 	console.log(`Server is listening on port ${PORT}. 🚀`);
