@@ -9,14 +9,15 @@ exports.checkUsername = (req, res) => {
 		.then(data => {
 			if(data.length === 0){
 				res.status(200).json({ available: true });
+				return;
 			}
 			res.status(200).json({ available: false });
 		})
 		.catch(err => {
-			res.status(500).send("An unexpected error occured :", err);
+			res.status(500).send(`An unexpected error occured : ${err}`);
 		});
 };
 
-exports.checkPassword = (req, res) => {
-	console.log('inside checkPassword in signupController');
-};
+/*
+exports.uploadAvatar
+*/
